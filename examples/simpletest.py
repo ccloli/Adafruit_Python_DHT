@@ -23,7 +23,7 @@
 import Adafruit_DHT
 
 # Sensor should be set to Adafruit_DHT.DHT11,
-# Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
+# Adafruit_DHT.DHT22, Adafruit_DHT.AM2302, or Adafruit_DHT.AM2320.
 sensor = Adafruit_DHT.DHT22
 
 # Example using a Beaglebone Black with DHT sensor

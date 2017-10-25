@@ -35,7 +35,8 @@ TRANSIENT_ERRORS = [DHT_ERROR_CHECKSUM, DHT_ERROR_TIMEOUT]
 DHT11  = 11
 DHT22  = 22
 AM2302 = 22
-SENSORS = [DHT11, DHT22, AM2302]
+AM2320 = 22
+SENSORS = [DHT11, DHT22, AM2302, AM2320]
 
 
 def get_platform():
@@ -63,7 +64,7 @@ def get_platform():
         raise RuntimeError('Unknown platform.')
 
 def read(sensor, pin, platform=None):
-    """Read DHT sensor of specified sensor type (DHT11, DHT22, or AM2302) on
+    """Read DHT sensor of specified sensor type (DHT11, DHT22, AM2302, or AM2320) on
     specified pin and return a tuple of humidity (as a floating point value
     in percent) and temperature (as a floating point value in Celsius). Note that
     because the sensor requires strict timing to read and Linux is not a real
@@ -75,13 +76,13 @@ def read(sensor, pin, platform=None):
     errors and want to override the detection.
     """
     if sensor not in SENSORS:
-        raise ValueError('Expected DHT11, DHT22, or AM2302 sensor value.')
+        raise ValueError('Expected DHT11, DHT22, AM2302, or AM2320 sensor value.')
     if platform is None:
         platform = get_platform()
     return platform.read(sensor, pin)
 
 def read_retry(sensor, pin, retries=15, delay_seconds=2, platform=None):
-    """Read DHT sensor of specified sensor type (DHT11, DHT22, or AM2302) on
+    """Read DHT sensor of specified sensor type (DHT11, DHT22, AM2302, or AM2320) on
     specified pin and return a tuple of humidity (as a floating point value
     in percent) and temperature (as a floating point value in Celsius).
     Unlike the read function, this read_retry function will attempt to read
