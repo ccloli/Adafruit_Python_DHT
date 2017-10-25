@@ -71,7 +71,7 @@ int pi_dht_read(int type, int pin, float* humidity, float* temperature) {
 
   // From AM2320 manual, the communication figure shows we should 
   // set high (`T go` symbol) to start reading data
-  bbb_mmio_set_high(pin);
+  pi_mmio_set_high(pin);
 
   // Set pin at input.
   pi_mmio_set_input(pin);
