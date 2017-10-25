@@ -68,6 +68,10 @@ int bbb_dht_read(int type, int gpio_base, int gpio_number, float* humidity, floa
   bbb_mmio_set_low(pin);
   busy_wait_milliseconds(20);
 
+  // From AM2320 manual, the communication figure shows we should 
+  // set high (`T go` symbol) to start reading data
+  bbb_mmio_set_high(pin);
+
   // Set pin as input.
   bbb_mmio_set_input(pin);
 

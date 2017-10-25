@@ -69,6 +69,10 @@ int pi_2_dht_read(int type, int pin, float* humidity, float* temperature) {
   pi_2_mmio_set_low(pin);
   busy_wait_milliseconds(20);
 
+  // From AM2320 manual, the communication figure shows we should 
+  // set high (`T go` symbol) to start reading data
+  bbb_mmio_set_high(pin);
+
   // Set pin at input.
   pi_2_mmio_set_input(pin);
   // Need a very short delay before reading pins or else value is sometimes still low.
