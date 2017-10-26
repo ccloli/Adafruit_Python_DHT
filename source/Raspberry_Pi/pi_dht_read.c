@@ -65,9 +65,12 @@ int pi_dht_read(int type, int pin, float* humidity, float* temperature) {
   // The next calls are timing critical and care should be taken
   // to ensure no unnecssary work is done below.
 
-  // Set pin low for ~20 milliseconds.
+  // Set pin low for ~2 milliseconds.
+  // From AM2320 manual, the `T be` symbol should keep in 0.8~20ms (typ. 1),
+  // the original delay 20ms is at its maximum time, may cause incorrect result,
+  // typical 1ms maybe too short, nearly to its minimal 800us, so we uses 2ms
   pi_mmio_set_low(pin);
-  busy_wait_milliseconds(20);
+  busy_wait_milliseconds(2);
 
   // From AM2320 manual, the communication figure shows we should 
   // set high (`T go` symbol) to start reading data
